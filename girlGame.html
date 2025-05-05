@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="girlGameStyle.css" />
+    <title>הלבשת בובה</title>
+    <link  rel="icon" href="images/greyGirl.png" type="image/x-icon" />
+  </head>
+  <body>
+    <h1>Welcome to the Game!</h1>
+    <div id="gameInfo"></div>
+    <div id="b">   
+      <div class="clothe" id="headClothe">
+        <img src="images/CpurpleHead.png" class="hC" alt="Purple Head" id="p1">
+        <img src="images/CpinkHead.png" class="hC" alt="Pink Head" id="p2">
+        <img src="images/CbegHead.png" class="hC" alt="Beg Head" id="p3">
+      </div>
+      <div class="clothe" id="bodyClothe">
+        <img src="images/CpurpleBody.png" class="bC" alt="Purple Body" id="p4">
+        <img src="images/CpinkBody.png" class="bC"  alt="Pink Body" id="p5" >
+        <img src="images/CbegBody.png" class="bC" alt="Beg Body" id="p6" >
+      </div>
+      <div class="clothe" id="legClothe">
+        <img src="images/CpurpleLeg.png" class="lC" alt="Purple Leg" id="p7" >
+        <img src="images/CpinkLeg.png" class="lC"  alt="Pink Leg" id="p8" >
+        <img src="images/CbegLeg.png" class="lC" alt="Beg Leg" id="p9" >
+      </div>
+    </div>
+  
+    <div id="image-Girl"></div>
+    <div id="error" ><div id="errorText"></div></div>
+    <div id="myDiv">
+      <div class="triangle"></div>
+  </div>  
+    <div id="guess-display"></div>
+    <div><button id="send" >V</button></div> 
+    <div id="imgclock">
+      <img src="images/הורדה__3_-removebg-preview.png" id="clock-image">
+      <div id="clock">
+          <span id="seconds" class="digit"></span>
+      </div>
+  </div>
+
+  <div id="Splay">
+    <button id="newGameButton" class="flashing-button">New Game</button>
+    <button id="Shomepage" class="flashing-button">homepage</button>
+</div>
+
+
+  </div>
+  <audio id="background-music" >
+    <source src="images/מחיאות_כפיים_4.mp3" type="audio/mpeg">   
+</audio>
+
+<audio id="music" >
+  <source src="images/bisyun.mp3" type="audio/mpeg">  
+</audio>
+
+<audio id="music2" >
+<source src="images/sound33.mp3" type="audio/mpeg">  
+</audio>
+<div>
+    <div id="ftime2"></div>
+    <br>
+    <div id="score2"></div>
+  </div>
+  <div>
+    <div id="ftime"></div>
+    <br>
+    <div id="score"></div>
+  </div>
+
+<script>
+     // מערכים להגרלה והמערך של הניחושים
+     let head = ["images/pinkHead.png", "images/begHead.png", "images/purpleHead.png"];
+      let body = ["images/pinkBody.png", "images/begBody.png", "images/purpleBody.png"];
+      let leg = ["images/pinkLeg.png", "images/begLeg.png", "images/purpleLeg.png"];
+      let guess = [];
+      let rhead
+      let rbody
+      let rleg
+      let girl;
+      let mark;
+      let winflag=true;
+      let timestar;
+      let countBool
+      
+document.getElementById('newGameButton').addEventListener('click', startNewGame);
+document.getElementById('Shomepage').addEventListener('click', homepage);
+document.getElementById('send').addEventListener('click', CheckGues);
+document.getElementById('p1').addEventListener('click', () => clothing('head', 'images/purpleHead.png'));
+document.getElementById('p2').addEventListener('click', () => clothing('head', 'images/pinkHead.png'));
+document.getElementById('p3').addEventListener('click', () => clothing('head', 'images/begHead.png'));
+document.getElementById('p4').addEventListener('click', () => clothing('body', 'images/purpleBody.png'));
+document.getElementById('p5').addEventListener('click', () => clothing('body', 'images/pinkBody.png'));
+document.getElementById('p6').addEventListener('click', () => clothing('body', 'images/begBody.png'));
+document.getElementById('p7').addEventListener('click', () => clothing('leg', 'images/purpleLeg.png'));
+document.getElementById('p8').addEventListener('click', () => clothing('leg', 'images/pinkLeg.png'));
+document.getElementById('p9').addEventListener('click', () => clothing('leg', 'images/begLeg.png'));
+
+ if (localStorage.getItem('highScore')==null)
+  {
+  localStorage.setItem('highScore',5);
+ }
+  // מקבלת את ערך הרמה
+function getQueryParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+const buttonPressed = getQueryParameter('button');
+
+//  אם זה רמה קשה מפעיל את הטיימר
+if (buttonPressed === "2") {
+  document.getElementById('imgclock').style.display='block';
+    var countDownDate = new Date().getTime() + 1 * 60 * 1000; // 
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("seconds").innerHTML = seconds;
+
+        // אם עבר הזמן
+        if (distance < 0) {
+            clearInterval(x); 
+            document.getElementById("clock").style.display = "none";
+            if (winflag) {
+                clothing('leg', girl.leg);
+                clothing('body', girl.body);
+                clothing('head', girl.head);
+                document.getElementById('Splay').style.display='block';
+                document.getElementById("ftime").innerHTML = "GAME OVER";
+            }
+            winflag = false; 
+        }
+    }, 1000); 
+}
+//חזרה לדף הבית
+function homepage() {
+    window.location.href = 'homePage.html';
+}
+//משחק חדש
+function startNewGame() {
+ 
+    location.reload(); // This will refresh the current page
+}
+
+
+      // הכנת הבובה הבסיסית - אפורה
+      const imageContainer = document.getElementById('image-Girl');
+
+      const imageGirl = document.createElement('img');
+      imageGirl.src = 'images/greyGirl.png';
+      imageGirl.id = 'girl';
+      imageContainer.appendChild(imageGirl);
+
+      const imageHead = document.createElement('img');
+      imageHead.src = 'images/greyHead.png';
+      imageHead.id = 'head';
+      imageContainer.appendChild(imageHead);
+
+      const imageBody = document.createElement('img');
+      imageBody.src = 'images/greyBody.png';
+      imageBody.id = 'body';
+      imageContainer.appendChild(imageBody);
+
+      const imageLeg = document.createElement('img');
+      imageLeg.src = 'images/greyLeg.png';
+      imageLeg.id = 'leg';
+      imageContainer.appendChild(imageLeg);
+
+      // יצירת אוביקט של ילדה ומספר הצלחות וכישלון
+      function Cloth(head, body, leg, Inplace, Notplace) 
+      {
+        this.head = head;
+        this.body = body;
+        this.leg = leg;
+        this.Inplace = Inplace;
+        this.Notplace = Notplace;
+      }
+
+      // פונקציה המגרילה בובה שאותה צריך לנחש
+      function rand() {
+         rhead = head[Math.floor(Math.random() * 3)];
+         rbody = body[Math.floor(Math.random() * 3)];
+         rleg = leg[Math.floor(Math.random() * 3)];
+        girl = new Cloth(rhead, rbody, rleg, 0, 0);
+        document.getElementById('m').innerHTML = `
+          <img src="${girl.head}" alt="Head" style="width:50px; height:50px;">`
+          document.getElementById('mm').innerHTML = `<img src="${girl.body}" alt="Body" style="width:50px; height:50px;">`
+          document.getElementById('mmm').innerHTML =` <img src="${girl.leg}" alt="Leg" style="width:50px; height:50px;">
+        `;
+      }
+
+      // הוספת בובה שניסו למערך הנסיונות
+      function Addgirl(head1, body1, leg1, Inplace1, Notplace1) {
+        let newCloth = new Cloth(head1, body1, leg1, Inplace1, Notplace1);
+        guess.push(newCloth);
+        Showguess();
+      }
+
+      // בדיקת הבובה שניסו
+      function CheckGues() {
+        mark++;
+        document.getElementById('errorText').innerHTML = '';
+        document.getElementById('error').style.display = 'none';
+        document.getElementById('myDiv').style.display = 'none';
+
+
+        if (winflag)//אם כעוד לא ניצח
+         {
+        let h = document.getElementById('head').src;
+        let b = document.getElementById('body').src;
+        let l = document.getElementById('leg').src;
+        let hG = "images/greyHead.png";
+        let bG = "images/greyBody.png";
+        let lG = "images/greyLeg.png";
+        //נצחון
+        if (h.includes(girl.head) && b.includes(girl.body)&& l.includes(girl.leg))
+         {
+          document.getElementById('Splay').style.display='block';
+          document.getElementById('ftime2').innerHTML = 'Wowwww'; 
+           let highScore = localStorage.getItem('highScore') ;
+          document.getElementById('score2').innerHTML ='your guess: '+ guess.length+'  highscore:  '+highScore;
+          saveHighScore(guess.length)
+          winflag=false;
+          document.getElementById("clock").style.display = "none";
+          document.getElementById('background-music').play();
+           timestar= setInterval(startFallingImages, 1000);
+          
+          
+        } else {
+          if (h.includes(hG) || b.includes(bG) || l.includes(lG)) 
+          {
+            document.getElementById('errorText').innerHTML = 'not dressed';
+            document.getElementById('music2').play();
+            document.getElementById('error').style.display = 'block';
+            document.getElementById('myDiv').style.display = 'block';
+
+          } else
+           {
+            let flag = true;
+            for (let i = 0; i < guess.length && flag; i++)
+             {
+              if (guess[i].head === h && guess[i].body === b && guess[i].leg === l)
+               {
+                document.getElementById('errorText').style.marginTop = '9%';
+                document.getElementById('errorText').style.marginLeft = '5%';
+                document.getElementById('error').style.fontSize = '20px';
+                document.getElementById('myDiv').style.left = '70%';
+                document.getElementById('music2').play();
+                document.getElementById('errorText').innerHTML = 'You have already tried this combination';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('myDiv').style.display = 'block';
+
+                flag = false;
+              }
+            }//הוספת הניחוש למערך הניחושים
+            if (flag) {
+              document.getElementById('music').play();
+               countBool = 0;
+            if (h.includes(girl.head)) { countBool += 1; }
+        if (b.includes(girl.body)) { countBool += 1; }
+        if (l.includes(girl.leg)) { countBool += 1; }
+          Addgirl(h, b, l, countBool, 3 - countBool);
+            }
+          }
+          if(guess.length == 5)
+        {
+          document.getElementById('Splay').style.display='block';
+            clothing('leg',girl.leg);
+            clothing('body',girl.body)
+            clothing('head',girl.head)
+            document.getElementById("ftime").innerHTML = "GAME OVER";
+            winflag=false;
+        }
+            }
+        }
+        }
+     //הצגת הניחושים עד כה
+      function Showguess() {
+        
+        const guessDisplay = document.getElementById('guess-display');
+        guessDisplay.innerHTML = ''; // Clear previous content
+        guess.forEach(item => {
+          const circle = document.createElement('div');
+          circle.className = 'circle';
+          circle.innerHTML = `
+            <img src="images/greyGirl.png" class="guessImg">
+            <img src="${item.head}" class="guessImg">
+            <img src="${item.body}" class="guessImg">
+            <img src="${item.leg}" class="guessImg">
+            <div id="bool">
+              <span id="star">★</span> ${item.Inplace}<br>
+              <span id="c">○</span> ${item.Notplace}
+            </div>
+          `;
+          guessDisplay.appendChild(circle);
+        });
+      }
+
+      // החלפת הבגדים מהארון לפי הלחיצה
+      function clothing(part, src)
+      {
+        if (winflag) { document.getElementById(part).src = src;}
+      }
+
+
+   //נפילת דפים בסיום המשחק
+      function startFallingImages() {
+            const imageUrls = [
+               'images/Repere yellow Instagram.jpeg',
+'images/Orange Symphony - Osteospermum hybrid.jpeg',
+'images/zelený rámeček.jpeg',
+'images/הורדה (2).jpeg',
+'images/הורדה (3).jpeg',
+'images/Repere yellow Instagram.jpeg',
+'images/Orange Symphony - Osteospermum hybrid.jpeg',
+'images/zelený rámeček.jpeg',
+'images/הורדה (2).jpeg',
+'images/הורדה (3).jpeg',
+            ];
+            function createFallingImage() {
+    const img = document.createElement('img');
+    img.src = imageUrls[Math.floor(Math.random() * imageUrls.length)];
+    img.classList.add('falling-image');
+
+    // Random size between 50px and 150px
+    const size = Math.random() * 10 + 5; // Increase the range for better visibility
+    img.style.width = `${size}px`;
+    img.style.height = `${size}px`;
+
+    // Random position along the width of the window
+    img.style.left = Math.random() * (window.innerWidth - size) + 'px'; // Adjust to prevent overflow
+    img.style.top = '-20px'; // Start just above the viewport
+
+    // Add random rotation
+    const rotate = Math.random() * 360;
+    img.style.transform = `rotate(${rotate}deg)`;
+
+    document.body.appendChild(img);
+
+    // Animate falling
+      setTimeout(() => {
+        const fallDuration = Math.random() * 1 + 1; // Duration between 4 and 6 seconds for smoother fall
+        img.style.transition = `transform ${fallDuration}s ease-in-out, top ${fallDuration}s ease-in-out`;
+        img.style.top = window.innerHeight + 'px';
+        img.style.transform = `translateY(${window.innerHeight}px) rotate(${rotate + 360}deg)`;
+    }, 10);
+
+    // Remove image after falling
+    img.addEventListener('transitionend', () => {
+        img.remove();
+    });
+}
+
+
+            function fallMainImage() {
+                const mainImage = document.getElementById('p');
+                const fallDuration = Math.random() * 2 + 3; // Duration between 3 and 5 seconds
+                mainImage.style.transition = `top ${fallDuration}s linear`;
+                mainImage.style.top = window.innerHeight + 'px';
+
+                mainImage.addEventListener('transitionend', () => {
+                    // After falling, set the main image to fixed position at the bottom
+                    mainImage.style.position = 'fixed';
+                    mainImage.style.bottom = '0';
+                    mainImage.style.left = '50%';
+                    mainImage.style.transform = 'translateX(-50%)';
+                });
+            }
+
+            const fallingInterval = setInterval(() => {
+                const numberOfImages = 20; // Number of images to fall each interval
+                for (let i = 0; i < numberOfImages; i++) {
+                    createFallingImage();
+                }
+            }, 200); // Interval between batches of images
+
+            // Fall the main image
+            fallMainImage();
+        }
+
+//השיא הגבוה
+function saveHighScore(score) {
+    // בודק אם השיא הנוכחי גבוה יותר מהשיא שהשמרנו
+    let highScore = localStorage.getItem('highScore') ;
+    if (score < highScore) 
+        localStorage.setItem('highScore', score); // שומר את השיא החדש
+}
+
+rand();
+
+
+</script>
+</body>
+</html>

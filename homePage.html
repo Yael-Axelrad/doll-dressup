@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="homePageStyle.css" />
+    <title>HomePage</title>
+    <link  rel="icon" href="images/greyGirl.png" type="image/x-icon" />
+</head>
+<body>
+    <div id="girl"><img src="images/pinkGirl.png" alt="" id="girlImg"></div>
+    <div>
+    </div>
+    <div id="Instructions"  class="clickable"><div id="InstructionsText" class="textR">Instructions</div><img src="images/ענן-removebg-preview.png" alt="" id="InstructionsImg"></div>
+    <div id="level1" class="clickable"><div id="level1Text" class="textR">1 level</div><img src="images/starl.png" alt="" id="level1Img"></div>
+    <div id="level2" class="clickable"><div id="level2Text" class="textR">2 level</div><img src="images/starl.png" alt="" id="level2Img"></div>
+   
+    <div id="formContainer"></div>
+      <div id="Instructions2"><img id="Instructions22" src="images/ענןן.png">
+        
+    </div>
+<script>
+    document.getElementById('level1Text').addEventListener('click', () => {
+        window.location.href = 'girlGame.html?button=1';
+    });
+
+    document.getElementById('level2Text').addEventListener('click', () => {
+        window.location.href = 'girlGame.html?button=2';
+    });
+    document.getElementById('InstructionsText').addEventListener('click', () => {
+       document.getElementById('Instructions2').style.display='block';
+    });
+
+    // פונקציה ליצירת הטופס
+    function createForm() {
+        const form = document.createElement('form');
+        form.onsubmit = validateForm;
+
+        // יצירת שדה שם פרטי
+        const fnameLabel = document.createElement('label');
+        fnameLabel.setAttribute('for', 'fname');
+        fnameLabel.innerText = ':שם פרטי';
+        form.appendChild(fnameLabel);
+
+        const fnameInput = document.createElement('input');
+        fnameInput.type = 'text';
+        fnameInput.id = 'fname';
+        fnameInput.name = 'fname';
+        fnameInput.required = true;
+        fnameInput.maxLength = 15;
+        form.appendChild(fnameInput);
+
+        form.appendChild(document.createElement('br'));
+
+        // יצירת שדה שם משפחה
+        const lnameLabel = document.createElement('label');
+        lnameLabel.setAttribute('for', 'lname');
+        lnameLabel.innerText = ':שם משפחה';
+        form.appendChild(lnameLabel);
+
+        const lnameInput = document.createElement('input');
+        lnameInput.type = 'text';
+        lnameInput.id = 'lname';
+        lnameInput.name = 'lname';
+        lnameInput.required = true;
+        lnameInput.maxLength = 25;
+        form.appendChild(lnameInput);
+
+        form.appendChild(document.createElement('br'));
+        form.appendChild(document.createElement('br'));
+
+        // יצירת שדה מייל
+        const mailLabel = document.createElement('label');
+        mailLabel.setAttribute('for', 'mail');
+        mailLabel.innerText = ':מייל';
+        form.appendChild(mailLabel);
+
+        const mailInput = document.createElement('input');
+        mailInput.type = 'email';
+        mailInput.id = 'mail';
+        mailInput.name = 'mail';
+        mailInput.required = true;
+        form.appendChild(mailInput);
+
+        form.appendChild(document.createElement('br'));
+        form.appendChild(document.createElement('br'));
+
+        // כפתור שליחה
+        const submitButton = document.createElement('input');
+        submitButton.type = 'submit';
+        submitButton.value = 'שלח';
+        form.appendChild(submitButton);
+
+        // הוספת הטופס לדיו
+        document.getElementById('formContainer').appendChild(form);
+    }
+    createForm();
+
+    // פונקציה לבדיקה של תקינות הטופס
+    function validateForm(event) {
+        const mailInput = document.getElementById('mail');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(mailInput.value)) {
+            alert('אנא הכנס כתובת דוא"ל תקינה.');
+            event.preventDefault();
+            return false;
+        }
+        document.getElementById('formContainer').style.display = 'none'; // Hide the form
+        return false;
+    }
+</script>
+</body>
+</html>

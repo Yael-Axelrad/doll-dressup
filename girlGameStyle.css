@@ -1,0 +1,318 @@
+
+
+img {
+  height: 200px;
+
+}
+
+#page {
+  display: flex;
+}
+body{
+    overflow: hidden; /* זה ימנע גלילה כאשר הדפים נופלים */
+    background-image: url("images/בדי1.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  
+}
+
+#image-Girl {
+  position: absolute;
+  left: 55%;
+  top: 30%;
+  width: 30%;
+  height: 400px; /* הוספת גובה קבוע */
+  /* border: 2px solid rgb(228, 63, 63); הוספת גבולות זמניים */
+}
+
+#image-Girl img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+}
+
+#greyGirl{
+  margin-left: 55%;
+  margin-top: -22%;
+  width: 30%;
+}
+#greyGirlImg
+{
+  width: 100%;
+  height: 100%;
+}
+.clothe img
+{
+      width: 10%;
+      height: 10%;
+}
+#b{
+  display: flex;
+  position: absolute;
+  left: 7%;
+  top: 13%;
+  flex-direction: column;
+
+}
+.circle {
+  width: 125px; /* Adjust the size */
+  height:125px;
+  border-radius: 40%;
+  margin: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #efc9ed; /* Optional: border styling */
+ 
+}
+#guess-display
+{
+  display: flex;
+  position: absolute;
+  left: 44%;
+  top: 8%;
+  flex-wrap: nowrap;
+  align-content: stretch;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+.guessImg
+{
+  width: 127px;
+  position: absolute;
+  height: 127px;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#send {
+  size: 130px;
+  font-size:xx-large;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  left: 72%;
+  top: 77%;
+  background-color: #e7809f;
+  border-color: rgb(210, 152, 86);
+  color: rgb(85 52 14);
+  animation: pulse 1s infinite;
+}
+#all
+{
+  display: flex;
+}
+
+#headClothe
+{
+  margin-top: 2%;
+}
+#bodyClothe
+{
+  margin-top: -1%;
+  display: flex;
+  margin-left: -1.4%;
+}
+#legClothe
+{
+margin-top: 2.5%;
+margin-left: -1%;
+}
+#p5
+{
+  width: 8%;
+}
+#P8
+{
+  width: 8%;
+  margin-bottom: 1%;
+}
+.hC
+{
+  margin-inline: 1%;
+}
+.bC
+{
+  margin-inline: 1.8%;
+}
+.lC{
+  margin-inline: 1.6%;
+}
+#bool
+{
+  margin-left: 54%;
+  font-size: 21px;
+  font-style: italic;
+  color: #ff0dc0;
+
+}
+#star
+{
+color: rgb(231, 14, 100);;
+}
+#c
+{
+  color: rgb(231, 14, 100);;
+font-size: 28px;
+}
+  #error {
+    position: absolute;
+    position: absolute;
+    left: 72%;
+    top: 35%;
+    background-color:#e7809f;
+    border-radius: 50%;
+    height: 80px;
+    padding: 10px;
+    border: 0px solid #ccc;
+    position: absolute;
+    z-index: 1000;
+    max-width: 203px;
+    font-size: 24px;
+    color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    
+}
+#errorText
+{
+  margin-top: 22%;
+}
+
+#myDiv {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  /* background-color: lightblue; */
+  top: 35%;
+  left: 69%;
+  /* position: relative; */
+  /* הטיה רק בציר ה-X */
+transform: skewX(20deg);
+
+/* הטיה רק בציר ה-Y */
+transform: skewY(-30deg);
+display: none;
+}
+.triangle {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 32px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 32px solid  #e7809f;/* הוספת גבול תחתון ליצירת המשולש */
+}
+
+
+
+/* @font-face {
+  font-family: 'Digital-7';
+  src: url('https://fonts.cdnfonts.com/s/24263/Digital7.ttf') format('truetype');
+} */
+#ftime2{
+  text-align: center;
+  position: RELATIVE;
+  font-size: 100px;
+  color: #e7809f;
+  z-index: 9999;
+}
+#score2{
+  text-align: center;
+  position: RELATIVE;
+  font-size: 35px;
+  color: #e7809f;
+  z-index: 9999;
+}
+
+#ftime{
+  text-align: center;
+  position: RELATIVE;
+  font-size: 100px;
+  color: #e7809f;
+  z-index: 9999;
+}
+
+.falling-image {
+  position: absolute;
+  transition: transform 5s linear, top 8s linear;
+}
+
+#imgclock {
+  position: absolute;
+  /* display: inline-block; */
+  top: 70%;
+  left: 42%;
+  display: none;
+}
+
+#clock {
+  position: absolute;
+  top: 56%; /* ממקם את הטיימר באמצע התמונה */
+  left: 52%; /* ממקם את הטיימר באמצע התמונה */
+  transform: translate(-50%, -50%); /* מרכז את הטיימר */
+  color:  #e7809f; /* צבע הטקסט */
+  font-size: 38px; /* גודל הטקסט */
+
+}
+#Splay {
+  display: flex; /* Use flexbox to align buttons next to each other */
+  justify-content: center; /* Center the buttons horizontally */
+  margin-top: 20px; /* Space above the buttons */
+  position: absolute; /* Allows positioning at the bottom */
+  bottom: 20px; /* Space from the bottom */
+  left: 50%; /* Center the container */
+  transform: translateX(-50%); /* Center the container */
+  display: none;
+}
+
+.flashing-button {
+  font-size: large; /* Font size */
+  padding: 10px 20px; /* Inner spacing */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #e7809f; /* Background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s; /* Smooth transition for background color */
+  margin: 0 10px; /* Space between buttons */
+  animation: flash 1s infinite; /* Flashing animation */
+}
+
+.flashing-button:hover {
+  background-color: #d56d8c; /* Change background color on hover */
+}
+
+/* Flashing animation */
+@keyframes flash {
+  0% {
+      background-color: #d08da1; /* Initial color */
+  }
+  50% {
+      background-color: #d56d8c; /* Flashing color */
+  }
+  100% {
+      background-color: #de3b6c; /* Return to initial color */
+  }
+}
+h1{
+  color:  #e7809f;
+  text-align: center;
+  font-size: xx-large;
+  position: absolute;
+  top: -1.5%;
+  left: 40%;
+}

@@ -1,0 +1,182 @@
+body {
+    overflow: hidden; /* ימנע גלילה כאשר הדפים נופלים */
+    background-image: url("images/enter4.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative; /* חיוני כדי שה-z-index יעבוד על התמונות המוחזקות בתוך body */
+}
+
+#girl {
+    position: absolute;
+    left: 28%;
+    top: 40%;
+    z-index: 10;
+}
+
+#girlImg {
+    width: 60%;
+}
+
+@keyframes moveInstructions {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+}
+
+#Instructions {
+    position: absolute;
+    top: -25%;
+    left: 78%;
+    animation: moveInstructions 2s ease-in-out infinite;
+}
+
+#InstructionsText {
+    position: absolute;
+    top: 62%;
+    left: 21%;
+    color: #c38000;
+    cursor: pointer;
+    user-select: none; /* Disable text selection */
+}
+
+#InstructionsImg {
+    width: 400px;
+}
+
+@keyframes blink {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#level1, #level2 {
+    animation: blink 2s infinite;
+}
+
+#level1 {
+    position: absolute;
+    top: 0%;
+    left: 8%;
+    z-index: 10;
+
+}
+
+#level1Text {
+    position: absolute;
+    top: 59.5%;
+    left: 34%;
+    cursor: pointer;
+    user-select: none; /* Disable text selection */
+}
+
+#level1Img {
+    width: 370px;
+}
+
+#level2 {
+    position: absolute;
+    top: -5%;
+    left: -4%;
+}
+
+#level2Text {
+    position: absolute;
+    top: 59%;
+    left: 33.8%;
+    font-size: 25px;
+    cursor: pointer;
+    user-select: none; /* Disable text selection */
+}
+
+#level2Img {
+    width: 280px;
+}
+
+.textR {
+    font-size: 30px;
+    color: #ff53b9;
+    font-weight: 600;
+    font-style: oblique;
+}
+
+label {
+    color: #efc1da;
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+    display: block;
+    font-size: xx-large;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 95%;
+    font-size: large;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: right;
+}
+
+input[type="submit"] {
+    font-size: xx-large;
+    background-color: #f581c6;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: #fb5acd;
+}
+
+#formContainer {
+    
+    background-color: rgba(255, 255, 255, 0.9); /* Make background slightly transparent */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 400px;
+    position: absolute; /* Position absolutely */
+    top: 50%; /* Center the form vertically */
+    left: 50%; /* Center the form horizontally */
+    transform: translate(-50%, -50%); /* Adjust for actual centering */
+    z-index: 40; /* Ensure it is above other content */
+}
+
+/* סגנון עבור הכפתורים */
+#level1Text:hover, #level2Text:hover {
+    color: #ff53b9;
+    transform: scale(1.1);
+    transition: all 0.2s;
+}
+
+/* סגנון לשדות הקלט כשלא ממלאים */
+input:focus {
+    background-color: #ffffff !important;
+    outline: none;
+}
+#Instructions2
+{
+    display: flex;
+    position: absolute;
+    top:-10%;
+    left: 13%;
+    display: none;
+}
+#Instructions22{
+    width: 850px;
+  
+
+}
