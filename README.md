@@ -1,7 +1,7 @@
 ![Demo](images/dollGif.gif)
 
 
-https://yael-axelrad.github.io/doll-dressup/homePage.html
+👉 [Click here to play the game](https://yael-axelrad.github.io/doll-dressup/homePage.html)
 
 
 Doll Designer
