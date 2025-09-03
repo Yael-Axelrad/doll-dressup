@@ -1,4 +1,4 @@
-![Demo](images/dollGif.gif)
+![Demo](ezgif-235b958252bbfa.gif)
 
 
 👉 [Click here to play the game](https://yael-axelrad.github.io/doll-dressup/homePage.html)
